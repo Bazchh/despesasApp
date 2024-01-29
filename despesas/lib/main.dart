@@ -1,6 +1,8 @@
 // ignore_for_file: sort_child_properties_last
 
+import 'package:despesas/Componentes/DespesasAppInterface.dart';
 import 'package:despesas/Componentes/TransacoesDoUsuario.dart';
+import 'package:despesas/Modelos/Transacao.dart';
 import 'package:flutter/material.dart';
 
 main() => runApp(despesasApp());
@@ -22,21 +24,7 @@ class homePage extends StatelessWidget {
         title: Text('DespesasApp'),
         backgroundColor: Colors.blue,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Container(
-            width: double.infinity,
-            // ignore: prefer_const_constructors
-             child: Card(
-              child: Text('Página inicial',),
-              elevation: 5,
-              color: Colors.blue,
-            ),
-          ),
-          TransacoesDoUsuario(),
-        ],
-      ),
+      body: DespesasAppInterface(),
     );
   }
 }
