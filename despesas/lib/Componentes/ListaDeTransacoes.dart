@@ -10,13 +10,12 @@ class ListaDeTransacoes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
+      height: 730,
       child: ListView.builder(
         itemCount: transacoes.length,
-        itemBuilder: (ctx,index){
-            final tr = transacoes[index]; 
-            return Card(
-            color: Colors.blue,
+        itemBuilder: (ctx, index) {
+          final tr = transacoes[index];
+          return Card(
             child: Row(
               children: [
                 Container(
@@ -26,13 +25,13 @@ class ListaDeTransacoes extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
-                      color: Colors.purple,
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50.0),
                     border: Border.all(
-                      color: Colors.black,
+                      color: Theme.of(context).colorScheme.primary,
                       width: 1,
                     ),
                   ),
@@ -47,7 +46,6 @@ class ListaDeTransacoes extends StatelessWidget {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
-                          color: Colors.black,
                         ),
                       ),
                     ),

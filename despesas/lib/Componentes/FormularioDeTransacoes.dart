@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
 
-class FormularioDeTransacoes extends StatelessWidget {
-  final controladorTitulo = TextEditingController();
-  final controladorValor = TextEditingController();
-
+class FormularioDeTransacoes extends StatefulWidget {
   final void Function(String, double) onSubmit;
 
   FormularioDeTransacoes(this.onSubmit);
 
+  @override
+  State<FormularioDeTransacoes> createState() => _FormularioDeTransacoesState();
+}
+
+class _FormularioDeTransacoesState extends State<FormularioDeTransacoes> {
+  final controladorTitulo = TextEditingController();
+  final controladorValor = TextEditingController();
+
   _submitForm() {
     final titulo = controladorTitulo.text;
     final valor = double.tryParse(controladorValor.text) ?? 0.0;
-    if(titulo.isEmpty || valor <= 0){
+    if (titulo.isEmpty || valor <= 0) {
       return;
     }
-    onSubmit(titulo, valor);
+    widget.onSubmit(titulo, valor);
   }
 
   @override
@@ -39,11 +44,13 @@ class FormularioDeTransacoes extends StatelessWidget {
               children: [
                 TextButton(
                   onPressed: () => _submitForm(),
-                  child: Text('Nova transação',
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.purple)),
+                  child: Text(
+                    'Nova transação',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
               ],
             ),
