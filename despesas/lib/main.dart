@@ -16,6 +16,7 @@ class despesasApp extends StatelessWidget {
     return MaterialApp(
       home: homePage(),
       theme: tema.copyWith(
+        primaryColor: Colors.green[700],
         colorScheme: tema.colorScheme
             .copyWith(primary: Colors.green[500], secondary: Colors.green[700]),
         textTheme: tema.textTheme.copyWith(
@@ -31,7 +32,7 @@ class despesasApp extends StatelessWidget {
             fontFamily: 'OpenSans',
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color: Colors.white,
           ),
         ),
       ),
@@ -72,13 +73,14 @@ class _homePageState extends State<homePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('DespesasApp',
-        style: Theme.of(context).appBarTheme.titleTextStyle),
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        title: Text('DespesasApp'),
+        backgroundColor: Colors.green[700],
         actions: <Widget>[
           IconButton(
-              onPressed: () => _abrirTransacaoModal(context),
-              icon: Icon(Icons.add))
+            onPressed: () => _abrirTransacaoModal(context),
+            icon: Icon(Icons.add),
+            color: Colors.black87,
+         ),
         ],
       ),
       body: Container(
@@ -104,8 +106,8 @@ class _homePageState extends State<homePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _abrirTransacaoModal(context),
-        child: Icon(Icons.add),
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        child: Icon(Icons.add,color: Colors.black87),
+        backgroundColor: Theme.of(context).colorScheme.secondary,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
