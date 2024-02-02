@@ -1,6 +1,6 @@
-import 'package:despesas/Modelos/Transacao.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:despesas/Modelos/Transacao.dart';
 
 class ListaDeTransacoes extends StatelessWidget {
   final List<Transacao> transacoes;
@@ -10,7 +10,7 @@ class ListaDeTransacoes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 730,
+      height: 750,
       child: transacoes.isEmpty
           ? Column(
               children: <Widget>[
@@ -39,48 +39,58 @@ class ListaDeTransacoes extends StatelessWidget {
                   child: Row(
                     children: [
                       Container(
-                        margin:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        margin: EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 10),
                         child: Text(
                           'R\$ ${tr.valor.toStringAsFixed(2)}',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
-                            color: Theme.of(context).colorScheme.secondary,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .secondary,
                           ),
                         ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(50.0),
                           border: Border.all(
-                            color: Theme.of(context).colorScheme.secondary,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .secondary,
                             width: 1,
                           ),
                         ),
                         padding: EdgeInsets.all(10),
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            child: Text(
-                              tr.titulo,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              child: Text(
+                                tr.titulo,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                ),
+                                softWrap: true,
+                                overflow: TextOverflow.fade,
                               ),
                             ),
-                          ),
-                          Container(
-                            child: Text(
-                              DateFormat('d/MMM/y H:m:s').format(tr.data),
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 10,
-                                color: Colors.grey,
+                            Container(
+                              child: Text(
+                                DateFormat('d/MMM/y H:m:s')
+                                    .format(tr.data),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 10,
+                                  color: Colors.grey,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),
