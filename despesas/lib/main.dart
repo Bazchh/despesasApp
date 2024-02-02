@@ -1,6 +1,7 @@
 // ignore_for_file: sort_child_properties_last
 import 'dart:math';
 
+import 'package:despesas/Componentes/Grafico.dart';
 import 'package:despesas/Componentes/ListaDeTransacoes.dart';
 import 'package:despesas/Modelos/Transacao.dart';
 import 'package:despesas/Componentes/FormularioDeTransacoes.dart';
@@ -48,6 +49,8 @@ class homePage extends StatefulWidget {
 class _homePageState extends State<homePage> {
   final List<Transacao> _transactions = [];
 
+ 
+
   void _adicionaNovaTransacao(String titulo, double valor) {
     final novaTransacao = Transacao(
         id: Random().nextDouble().toString(),
@@ -60,6 +63,13 @@ class _homePageState extends State<homePage> {
 
     Navigator.of(context).pop();
   }
+
+   List<Transacao> get _transacoesRecentes{
+    return _transactions.where((tr){
+        return tr.data.isAfter(DateTime.now().subtract(Duration(days: 7)));
+    }).toList();
+ }
+  
 
   _abrirTransacaoModal(BuildContext context) {
     showModalBottomSheet(
@@ -88,18 +98,8 @@ class _homePageState extends State<homePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Container(
-                width: double.infinity,
-                // ignore: prefer_const_constructors
-                child: Card(
-                  child: Text(
-                    'Página inicial',
-                  ),
-                  elevation: 5,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-              ),
-              ListaDeTransacoes(_transactions),
+              Grafico(_transactions),
+              ListaDeTransacoes(_transacoesRecentes),
             ],
           ),
         ),
@@ -109,7 +109,7 @@ class _homePageState extends State<homePage> {
         child: Icon(Icons.add,color: Colors.black87),
         backgroundColor: Theme.of(context).colorScheme.secondary,
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+     // floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }
